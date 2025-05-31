@@ -2,15 +2,14 @@
 from pydantic import BaseModel, ConfigDict
 
 
-class ProductBase(BaseModel):
-    name: str
-    price: int
+class ConsumerBase(BaseModel):
+    consumerTitle: str
 
 
-class ProductCreate(ProductBase):
+class ConsumerCreate(ConsumerBase):
     pass
 
 
-class Product(ProductBase):
+class Consumer(ConsumerBase):
     id: int
     model_config = ConfigDict(from_attributes=True)

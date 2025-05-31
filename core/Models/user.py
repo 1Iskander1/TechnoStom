@@ -18,10 +18,12 @@ class User(Base):
     userLogin: Mapped[str] = mapped_column(String(40), unique=True)
     userPassword: Mapped[str] = mapped_column(String(40))
     userPhone: Mapped[str] = mapped_column(String(25))
-    userSpecialization: Mapped[str] = mapped_column(String(50))
+    # userSpecialization: Mapped[str] = mapped_column(String(50))
     userScore: Mapped[int | None] = mapped_column(Integer, nullable=True)
     role_id: Mapped[int] = mapped_column(ForeignKey("roles.id"))
+    # spec_id: Mapped[int] = mapped_column(ForeignKey("specs.id"))
     userRole: Mapped["Role"] = relationship(back_populates="users")
+    # userSpec: Mapped["Spec"] = relationship(back_populates="users")
     # users: Mapped[list["User"]] = relationship(back_populates="userRole")
 
     def __str__(self):

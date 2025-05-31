@@ -45,6 +45,9 @@ async def update_task(session: AsyncSession, task_id: int, data: UpdateTask) -> 
                 Task.taskText: data.taskText,
                 Task.taskScore: data.taskScore,
                 Task.role_id: data.role_id,
+                Task.status: data.status,
+                Task.taskTitle: data.taskTitle,
+                Task.assignedUserId: data.assignedUserId,
             }
         )
     )

@@ -9,7 +9,7 @@ class UserBase(BaseModel):
     userPassword: str
     userPhone: str
     role_id: int
-    userSpecialization: str
+
     userScore: int | None
 
 
@@ -18,7 +18,6 @@ class UpdateUser(BaseModel):
     userMiddleName: str
     userLastName: str
     userPhone: str
-    userSpecialization: str
 
 
 class CreateUser(UserBase):
@@ -28,3 +27,8 @@ class CreateUser(UserBase):
 class User(UserBase):
     id: int
     model_config = ConfigDict(from_attributes=True)
+
+
+class LoginData(BaseModel):
+    Login: str
+    Password: str

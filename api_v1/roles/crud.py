@@ -14,6 +14,7 @@ async def get_roles(session: AsyncSession) -> list[Role]:
 
     roles = result.scalars().all()  # scalar - функция, чтобы возвращалось
     # не кортеж, а объект, а all превращает в список
+    # print(list(roles))
     return list(roles)
 
 

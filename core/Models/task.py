@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING
 
-from sqlalchemy import Text, ForeignKey, Integer
+from sqlalchemy import Text, ForeignKey, Integer, String
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 
 from .base import Base
@@ -11,10 +11,15 @@ if TYPE_CHECKING:
 
 class Task(Base):
     # 2 таблица задания (роль, само задание, сколько баллов получит сотрудник),
+    taskTitle: Mapped[str] = mapped_column(String(30))
     taskText: Mapped[str] = mapped_column(
         Text,
     )
+
     taskScore: Mapped[int] = mapped_column(Integer)
+    status: Mapped[str] = mapped_column(String(15))
+    assignedUserId: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=True)
+
     # username: Mapped[str] = mapped_column(String(20))
     # userMiddleName: Mapped[str] = mapped_column(
     #     String(30), default="None", nullable=True
@@ -26,5 +31,8 @@ class Task(Base):
     # userSpecialization: Mapped[str] = mapped_column(String(50))
     # userScore: Mapped[int | None] = mapped_column(Integer, nullable=True)
     role_id: Mapped[int] = mapped_column(ForeignKey("roles.id"))
+    # spec_id: Mapped[int] = mapped_column(ForeignKey("specs.id"))
+
     taskRole: Mapped["Role"] = relationship(back_populates="task")
+    # taskSpec: Mapped["Spec"] = relationship(back_populates="task")
     # users: Mapped[list["User"]] = relationship(back_populates="userRole")
